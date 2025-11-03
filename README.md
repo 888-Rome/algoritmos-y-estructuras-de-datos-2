@@ -4,11 +4,11 @@
 _Ximena Romero ; 888-Rome._
 
 ## 📢 | Grupo N°13 |
-⤷ Ximena Romero 
-⤷ Facundo Ojeda
-⤷ Juan García
-⤷ Camila Portillo
-⤷ Ignacio Venditto
+- Ximena Romero  
+- Facundo Ojeda
+- Juan García
+- Camila Portillo
+- Ignacio Venditto
 
 ## 🔗 Índice de Contenidos
 - [TP1]()
