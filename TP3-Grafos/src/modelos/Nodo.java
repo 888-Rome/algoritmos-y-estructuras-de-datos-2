@@ -1,6 +1,6 @@
 package modelos;
 
-// Importaciones ───────────────────────────────────────────────────────────────────────────────────────────────────────
+// ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
 import interfaces.INodo;
 import java.awt.*;
 import java.util.ArrayList;
@@ -8,35 +8,29 @@ import java.util.List;
 
 public class Nodo<T extends Comparable<T>> implements INodo<T> {
 
-    // Atributos ───────────────────────────────────────────────────────────────────────────────────────────────────────
-    private T dato;
-    private List<Nodo<T>> vecinos;
-    private boolean visitado;
+    // ▶ Atributos ─────────────────────────────────────────────────────────────────────────────────────────────────────
+    private T dato                  ;
+    private List<Nodo<T>> vecinos   ;
+    private boolean visitado        ;
 
-    // Constructor
+    // ▶ Constructor ───────────────────────────────────────────────────────────────────────────────────────────────────
     public Nodo(T dato,List<Nodo<T>> vecinos,boolean visitado){
-        this.dato = dato;
-        this.vecinos = new ArrayList<>();
-        this.visitado = false;
-
+        this.dato = dato                    ;
+        this.vecinos = new ArrayList<>()    ;
+        this.visitado = false               ;
     }
 
-    // Getters
-    public T getDato() {
-        return dato;
-    }
+    // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
+    public T getDato() { return dato; }
 
     @Override
-    public INodo<T>[] getVecinos() {
-        return new INodo[0];
-    }
+    public INodo<T>[] getVecinos() { return new INodo[0]; } //TODO: Verificar
 
-    // Setters
-    public void setDato(T data) {
-        this.dato = data;
-    }
+    // ▶ Setters ───────────────────────────────────────────────────────────────────────────────────────────────────────
+    public void setDato(T data) { this.dato = data; }
 
-    // Métodos
+    // ▶ Métodos ───────────────────────────────────────────────────────────────────────────────────────────────────────
+
     public boolean fueVisitado(){
         return visitado;
     }
@@ -49,4 +43,5 @@ public class Nodo<T extends Comparable<T>> implements INodo<T> {
         vecinos.add((Nodo<T>) nodo);
     }
 
+// ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 }

@@ -1,10 +1,9 @@
 package modelos;
 
 // ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
-import interfaces.IGrafo;
-import interfaces.INodo;
-
-import java.util.*;
+import interfaces.IGrafo    ;
+import interfaces.INodo     ;
+import java.util.*          ;
 
 public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
 
@@ -13,19 +12,19 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
 
     // ▶ Constructor ───────────────────────────────────────────────────────────────────────────────────────────────────
     public Grafo(List<Nodo<T>> nodos) {
-        this.nodos = new ArrayList<>();
+        this.nodos = new ArrayList<>()  ;
     }
 
     // ▶ Métodos ───────────────────────────────────────────────────────────────────────────────────────────────────────
 
     // ▶ Recorridos
-    /** Método para recorrer por profundidad. Llama a dfsRecursivo. */
+    /* Método para recorrer por profundidad. Llama a dfsRecursivo. */
     @Override
-    public void recorrerDFS(INodo inicio) {
-        /** Condición para detener el recorrido; Se encuentra vacío. */
+    public void recorrerDFS(INodo<T> inicio) {
+        /* Condición para detener el recorrido; Se encuentra vacío. */
         if (inicio == null) return;
 
-        /**  */
+        /*  */
         Set<INodo<T>> visitados = new HashSet<>();
 
         System.out.println("Recorrido DFS: ");
@@ -34,9 +33,10 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
 
         System.out.println();
     }
-    /** Método  para el recorrido por anchura. */
+
+    /* Método  para el recorrido por anchura. */
     @Override
-    public void recorrerBFS(INodo inicio) {
+    public void recorrerBFS(INodo<T> inicio) {
         Set<T> visitados = new HashSet<>();
         Queue<INodo<T>> cola = new LinkedList<>();
 
@@ -59,11 +59,8 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
         System.out.println();
     }
 
-
-
-
     // ▶ Recursivos
-    /** Método recursivo para el recorrido por profundidad. */
+    /* Método recursivo para el recorrido por profundidad. */
     private void dfsRecursivo(INodo<T> nodo, Set<INodo<T>> visitados) {
         if (nodo == null || visitados.contains(nodo)) return;
 
@@ -77,17 +74,15 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
         }
     }
 
-
-
     // ▶ Otros
     /** Método para agregar un nodo genérico al grafo. */
     @Override
-    public void agregarNodo(INodo nodo) {
+    public void agregarNodo(INodo<T> nodo) {
         nodos.add((Nodo<T>) nodo);
     }
 
     @Override
-    public void conectarNodos(INodo nodo1, INodo nodo2) {
+    public void conectarNodos(INodo<T> nodo1, INodo<T> nodo2) {
 
     }
 

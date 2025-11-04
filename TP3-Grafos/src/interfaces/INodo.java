@@ -14,4 +14,5 @@ public interface INodo<T extends Comparable<T>> {
     public void marcarVisitado(boolean b);
 
     INodo<T>[] getVecinos();
+
 }
