@@ -8,12 +8,15 @@ import java.util.*          ;
 public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
 
     // ▶ Atributos ─────────────────────────────────────────────────────────────────────────────────────────────────────
-    private List<Nodo<T>> nodos;
+    private List<Nodo<T>> nodos ;
 
     // ▶ Constructor ───────────────────────────────────────────────────────────────────────────────────────────────────
-    public Grafo(List<Nodo<T>> nodos) {
+    public Grafo() {
         this.nodos = new ArrayList<>()  ;
     }
+
+    // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
+    public List<Nodo<T>> getNodos() { return nodos; }
 
     // ▶ Métodos ───────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -43,7 +46,7 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
         cola.add(inicio);
         visitados.add((T) inicio.getDato());
 
-        System.out.println("Recorrido BFS:");
+        System.out.println("Recorrido BFS: ");
         while (!cola.isEmpty()) {
             INodo<T> actual = cola.poll();
             System.out.print(actual.getDato() + " ");
@@ -75,15 +78,19 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
     }
 
     // ▶ Otros
-    /** Método para agregar un nodo genérico al grafo. */
-    @Override
-    public void agregarNodo(INodo<T> nodo) {
-        nodos.add((Nodo<T>) nodo);
-    }
-
     @Override
     public void conectarNodos(INodo<T> nodo1, INodo<T> nodo2) {
+        if (nodo1 == null || nodo2 == null) return;
 
+        if (!nodos.contains(nodo1) || !nodos.contains(nodo2)) return;
+
+        nodo1.agregarVecino(nodo2);
+        nodo2.agregarVecino(nodo1);
+    }
+
+    /* Método para agregar un nodo genérico al grafo. */
+    public void agregarNodo(INodo<T> nodo) {
+        nodos.add((Nodo<T>) nodo);
     }
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

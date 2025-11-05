@@ -1,40 +1,36 @@
 package modelos;
 
 // ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
-import interfaces.INodo;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import interfaces.INodo     ;
+import java.awt.*           ;
+import java.util.ArrayList  ;
+import java.util.List       ;
 
 public class Nodo<T extends Comparable<T>> implements INodo<T> {
 
     // ▶ Atributos ─────────────────────────────────────────────────────────────────────────────────────────────────────
-    private T dato                  ;
-    private List<Nodo<T>> vecinos   ;
     private boolean visitado        ;
+    private List<Nodo<T>> vecinos   ;
+    private T dato                  ;
 
     // ▶ Constructor ───────────────────────────────────────────────────────────────────────────────────────────────────
-    public Nodo(T dato,List<Nodo<T>> vecinos,boolean visitado){
-        this.dato = dato                    ;
-        this.vecinos = new ArrayList<>()    ;
+    public Nodo(boolean visitado, List<Nodo<T>> vecinos, T dato){
         this.visitado = false               ;
+        this.vecinos = new ArrayList<>()    ;
+        this.dato = dato                    ;
     }
 
     // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
+    public boolean getVisitado(){ return visitado; }
+
     public T getDato() { return dato; }
 
-    @Override
-    public INodo<T>[] getVecinos() { return new INodo[0]; } //TODO: Verificar
+    public List<INodo<T>> getVecinos() { return new ArrayList<>(vecinos); }
 
     // ▶ Setters ───────────────────────────────────────────────────────────────────────────────────────────────────────
     public void setDato(T data) { this.dato = data; }
 
     // ▶ Métodos ───────────────────────────────────────────────────────────────────────────────────────────────────────
-
-    public boolean fueVisitado(){
-        return visitado;
-    }
-
     public void marcarVisitado(boolean b){
         this.visitado=b;
     }

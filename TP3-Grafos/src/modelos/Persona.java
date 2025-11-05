@@ -3,18 +3,18 @@ package modelos;
 // ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
 import interfaces.IPersona  ;
 
-public class Persona implements IPersona {
+public class Persona implements IPersona, Comparable<Persona> {
 
     // ▶ Atributos ─────────────────────────────────────────────────────────────────────────────────────────────────────
-    private String nombre   ;
     private String DNI      ;
+    private String nombre   ;
 
     // ▶ Constructores ─────────────────────────────────────────────────────────────────────────────────────────────────
     public Persona() {}
 
-    public Persona(String nombre, String DNI) {
-        this.nombre = nombre    ;
+    public Persona(String DNI, String nombre) {
         this.DNI = DNI          ;
+        this.nombre = nombre    ;
     }
 
     // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -36,10 +36,15 @@ public class Persona implements IPersona {
         return this.nombre.compareTo(persona.getNombre());
     }
 
+    @Override
+    public int compareTo(Persona persona) {
+        return this.DNI.compareTo(persona.getDNI());
+    }
+
     // ToString ────────────────────────────────────────────────────────────────────────────────────────────────────────
     @Override
     public String toString() {
-        return nombre + ", (" + DNI + ")" + " | ";
+        return nombre + " (" + DNI + ")" + " | ";
     }
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
