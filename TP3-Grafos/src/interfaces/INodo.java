@@ -9,16 +9,18 @@ public interface INodo<T> {
 
     // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
     boolean isVisitado()                        ;
+    List<Integer> getPesos()                    ;
     List<INodo<T>> getVecinos()                 ;
     T getDato()                                 ;
 
     // ▶ Setters ───────────────────────────────────────────────────────────────────────────────────────────────────────
     void setVisitado(boolean visitado)          ;
+    void setPesos(List<Integer> pesos)          ;
     void setVecinos(List<INodo<T>> vecinos)     ;
     void setDato(T dato)                        ;
 
     // ▶ Otros Métodos ─────────────────────────────────────────────────────────────────────────────────────────────────
-    void agregarVecino(INodo<T> nodo)           ;
+    void agregarVecino(INodo<T> nodo, int peso) ;
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 }
