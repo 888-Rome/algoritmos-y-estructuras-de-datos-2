@@ -16,6 +16,10 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
         this.nodos = new ArrayList<>();
     }
 
+    public List<Nodo<T>> getNodos() {
+        return nodos;
+    }
+
     // ▶ Métodos ───────────────────────────────────────────────────────────────────────────────────────────────────────
 
     // ▶ Recorridos
