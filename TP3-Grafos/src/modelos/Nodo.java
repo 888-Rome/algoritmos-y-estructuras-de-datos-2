@@ -2,39 +2,43 @@ package modelos;
 
 // ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
 import interfaces.INodo     ;
-import java.awt.*           ;
 import java.util.ArrayList  ;
 import java.util.List       ;
 
-public class Nodo<T extends Comparable<T>> implements INodo<T> {
+// ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+public class Nodo<T> implements INodo<T> {
 
     // ▶ Atributos ─────────────────────────────────────────────────────────────────────────────────────────────────────
     private boolean visitado        ;
-    private List<Nodo<T>> vecinos   ;
+    private List<INodo<T>> vecinos  ;
     private T dato                  ;
 
     // ▶ Constructor ───────────────────────────────────────────────────────────────────────────────────────────────────
-    public Nodo(boolean visitado, List<Nodo<T>> vecinos, T dato){
+    public Nodo(T dato){
         this.visitado = false               ;
         this.vecinos = new ArrayList<>()    ;
         this.dato = dato                    ;
     }
 
     // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
-    public boolean getVisitado(){ return visitado; }
-
+    @Override
+    public boolean isVisitado() { return visitado; }
+    @Override
     public T getDato() { return dato; }
-
+    @Override
     public List<INodo<T>> getVecinos() { return new ArrayList<>(vecinos); }
 
     // ▶ Setters ───────────────────────────────────────────────────────────────────────────────────────────────────────
+    @Override
     public void setDato(T data) { this.dato = data; }
+    @Override
+    public void setVisitado(boolean visitado) { this.visitado = visitado; }
+    @Override
+    public void setVecinos(List<INodo<T>> vecinos) { this.vecinos = vecinos; }
 
     // ▶ Métodos ───────────────────────────────────────────────────────────────────────────────────────────────────────
-    public void marcarVisitado(boolean b){
-        this.visitado=b;
-    }
-
+    @Override
     public void agregarVecino(INodo<T> nodo){
         vecinos.add((Nodo<T>) nodo);
     }
