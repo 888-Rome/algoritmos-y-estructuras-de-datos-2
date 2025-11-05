@@ -36,7 +36,10 @@ public class Grafo<T extends Comparable<T>> implements IGrafo<T> {
     }
     /** Método  para el recorrido por anchura. */
     @Override
-    public void recorrerBFS(INodo inicio) {
+    public void recorrerBFS(INodo<T> inicio) {
+        /*precondición */
+        if (!nodos.contains(inicio)) return;
+
         Set<T> visitados = new HashSet<>();
         Queue<INodo<T>> cola = new LinkedList<>();
 
