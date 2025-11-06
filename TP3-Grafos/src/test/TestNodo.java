@@ -1,5 +1,6 @@
 package test;
 
+// ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
 import interfaces.INodo;
 import modelos.Nodo;
 
@@ -18,17 +19,14 @@ public class TestNodo {
 
         // Crear un segundo nodo y agregarlo como vecino
         INodo<Integer> nodo2 = new Nodo<>(30);
-        nodo1.agregarVecino(nodo2);
+        nodo1.agregarVecino(nodo2,1);
 
         // Mostrar los vecinos
         System.out.println("Vecinos de nodo1:");
         for (INodo<Integer> v : nodo1.getVecinos()) {
             System.out.println(" - " + v.getDato());
         }
-
-        // Probar marcado de visitado
-        System.out.println("¿Fue visitado?: " + nodo1.fueVisitado());
-        nodo1.marcarVisitado(true);
-        System.out.println("¿Fue visitado después de marcarlo?: " + nodo1.fueVisitado());
     }
+
+// ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 }

@@ -121,7 +121,6 @@ public class Grafo<T> implements IGrafo<T> {
         List<INodo<T>> listaNodos = new ArrayList<>(nodos.values());
         int n = listaNodos.size();
 
-        /* Caso de grafo vacío. */
         if (n == 0) {
             System.out.println("El grafo está vacío...");
             return;
@@ -129,35 +128,34 @@ public class Grafo<T> implements IGrafo<T> {
 
         int[][] matriz = crearMatrizAdyacencia();
 
-        /* Encabezado */
         System.out.println("\n⌞ Matriz de Adyacencia ⌝\n");
 
-        /* Calcula largoMax según el elemento más largo */
+        // Calcula el largo del texto más largo
         int largoMax = 0;
-
         for (INodo<T> nodo : listaNodos) {
-            int largo = nodo.getDato().toString().length();
+            int largo = nodo.getDato().toString().replace("|", "").trim().length();
             if (largo > largoMax) largoMax = largo;
         }
 
-        // Columnas
-        /* Uso del método repeat() para darle un formato más limpio al SOut */
+        // Encabezado de columnas
         System.out.print(" ".repeat(largoMax + 5));
         for (INodo<T> nodo : listaNodos) {
-            System.out.printf("[%-" + largoMax + "s] ", nodo.getDato());
+            String nombre = nodo.getDato().toString().replace("|", "").trim();
+            System.out.printf("[%-" + largoMax + "s] ", nombre);
         }
 
         System.out.println();
 
         // Filas
         for (int i = 0; i < n; i++) {
-            /* Obtenemos el dato del elemento i, y lo convertimos en un string. */
-            String nombre = listaNodos.get(i).getDato().toString();
+            String nombre = listaNodos.get(i).getDato().toString().replace("|", "").trim();
             System.out.printf("| %-" + largoMax + "s | ", nombre);
 
             for (int j = 0; j < n; j++) {
-                System.out.print("[ " + matriz[i][j] + " ] ");
+                System.out.printf("[ %d ] ", matriz[i][j]);
             }
+
+            System.out.println();
         }
 
         System.out.println();
@@ -227,7 +225,6 @@ public class Grafo<T> implements IGrafo<T> {
             }
         }
         System.out.println();
-
     }
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
