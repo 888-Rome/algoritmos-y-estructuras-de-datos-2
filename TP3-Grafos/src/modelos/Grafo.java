@@ -49,7 +49,7 @@ public class Grafo<T> implements IGrafo<T> {
             /* Creamos la lista nueva. */
             List<INodo<T>> vecinosTemporal = new ArrayList<>();
 
-            for (INodo<T> vecino : vecinosTemporal) {
+            for (INodo<T> vecino : vecinos) {
                 if (!vecino.equals(nodoAEliminar)) {
                     vecinosTemporal.add(vecino);
                 }
@@ -85,18 +85,82 @@ public class Grafo<T> implements IGrafo<T> {
         }
     }
 
-    // TODO: Delegada a los miembros restantes del grupo:
-    // Facundo Ojeda - Juan García - Camila Portillo
     @Override
-    public int[][] matrizAdyacencia() {
-        return null;
+    public int[][] crearMatrizAdyacencia() {
+        if(nodos.isEmpty()) { return null; }
+
+        /* Determinamos el tamaño de la matriz, de acuerdo
+        *  con la cantidad de nodos en el grafo. */
+        int tam = nodos.size();
+        int[][] matriz = new int[tam][tam];
+
+        List<INodo<T>> listaNodos = new ArrayList<>(nodos.values());
+
+        /* Creamos el mapa */
+        Map<INodo<T>, Integer> indice = new HashMap<>();
+
+        for (int i = 0 ; i < listaNodos.size() ; i++) {
+            indice.put(listaNodos.get(i),i);
+        }
+
+        /* Llenamos la matriz */
+        for (INodo<T> nodo : listaNodos) {
+            int i = indice.get(nodo);
+
+            for (INodo<T> vecino : nodo.getVecinos()) {
+                int j = indice.get(vecino);
+                matriz[i][j] = 1;
+            }
+        }
+
+        return matriz;
     }
 
-    // TODO: Delegada a los miembros restantes del grupo:
-    // Facundo Ojeda - Juan García - Camila Portillo
     @Override
-    public Map<T, List<T>> listaAdyacencia() {
-       return null;
+    public void imprimirMatriz() {
+        List<INodo<T>> listaNodos = new ArrayList<>(nodos.values());
+        int n = listaNodos.size();
+
+        /* Caso de grafo vacío. */
+        if (n == 0) {
+            System.out.println("El grafo está vacío...");
+            return;
+        }
+
+        int[][] matriz = crearMatrizAdyacencia();
+
+        /* Encabezado */
+        System.out.println("\n⌞ Matriz de Adyacencia ⌝\n");
+
+        /* Calcula largoMax según el elemento más largo */
+        int largoMax = 0;
+
+        for (INodo<T> nodo : listaNodos) {
+            int largo = nodo.getDato().toString().length();
+            if (largo > largoMax) largoMax = largo;
+        }
+
+        // Columnas
+        /* Uso del método repeat() para darle un formato más limpio al SOut */
+        System.out.print(" ".repeat(largoMax + 5));
+        for (INodo<T> nodo : listaNodos) {
+            System.out.printf("[%-" + largoMax + "s] ", nodo.getDato());
+        }
+
+        System.out.println();
+
+        // Filas
+        for (int i = 0; i < n; i++) {
+            /* Obtenemos el dato del elemento i, y lo convertimos en un string. */
+            String nombre = listaNodos.get(i).getDato().toString();
+            System.out.printf("| %-" + largoMax + "s | ", nombre);
+
+            for (int j = 0; j < n; j++) {
+                System.out.print("[ " + matriz[i][j] + " ] ");
+            }
+        }
+
+        System.out.println();
     }
 
     // ▶ Recorridos
@@ -164,31 +228,6 @@ public class Grafo<T> implements IGrafo<T> {
         }
         System.out.println();
 
-        // TODO
-//        /*precondición */
-//        if (!nodos.contains(inicio)) return;
-//
-//        Set<T> visitados = new HashSet<>();
-//        Queue<INodo<T>> cola = new LinkedList<>();
-//
-//        cola.add(inicio);
-//        visitados.add((T) inicio.getDato());
-//
-//        System.out.println("Recorrido BFS:");
-//        while (!cola.isEmpty()) {
-//            INodo<T> actual = cola.poll();
-//            System.out.print(actual.getDato() + " ");
-//
-//            for (INodo<T> vecino : actual.getVecinos()) {
-//                T val = vecino.getDato();
-//                if (!visitados.contains(val)) {
-//                    visitados.add(val);
-//                    cola.add(vecino);
-//                }
-//            }
-//        }
-//        System.out.println();
-//    }
     }
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

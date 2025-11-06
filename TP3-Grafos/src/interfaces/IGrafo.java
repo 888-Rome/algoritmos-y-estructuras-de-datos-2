@@ -12,6 +12,7 @@ public interface IGrafo<T> {
     Map<T, INodo<T>> getNodos()                         ;
     INodo<T> getDato(T dato)                            ;
 
+
     // ▶ Otros Métodos ─────────────────────────────────────────────────────────────────────────────────────────────────
 
     // ▶ Funcionamiento Básico
@@ -21,8 +22,8 @@ public interface IGrafo<T> {
     void borrarGrafo()                                  ;
 
     // ▶ Representación
-    int[][] matrizAdyacencia()                          ;
-    Map<T, List<T>> listaAdyacencia()                   ;
+    int[][] crearMatrizAdyacencia()                     ;
+    void imprimirMatriz()                               ;
 
     // ▶ Recorridos
     List<T> recorrerDFS(INodo<T> inicio)                ;

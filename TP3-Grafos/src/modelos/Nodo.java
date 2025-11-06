@@ -3,24 +3,26 @@ package modelos;
 // ▶ Importaciones ─────────────────────────────────────────────────────────────────────────────────────────────────────
 import interfaces.INodo     ;
 import java.util.ArrayList  ;
+import java.util.HashMap    ;
 import java.util.List       ;
+import java.util.Map        ;
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 public class Nodo<T> implements INodo<T> {
 
     // ▶ Atributos ─────────────────────────────────────────────────────────────────────────────────────────────────────
-    private boolean visitado        ;
-    private List<Integer> pesos     ;
-    private List<INodo<T>> vecinos  ;
-    private T dato                  ;
+    private boolean visitado                ;
+    private Map<INodo<T>, Integer> pesos    ;
+    private List<INodo<T>> vecinos          ;
+    private T dato                          ;
 
     // ▶ Constructor ───────────────────────────────────────────────────────────────────────────────────────────────────
     public Nodo(T dato){
-        this.visitado = false               ;
-        this.pesos = new ArrayList<>()      ;
-        this.vecinos = new ArrayList<>()    ;
-        this.dato = dato                    ;
+        this.visitado = false                   ;
+        this.pesos = new HashMap<>()            ;
+        this.vecinos = new ArrayList<>()        ;
+        this.dato = dato                        ;
     }
 
     // ▶ Getters ───────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -28,7 +30,7 @@ public class Nodo<T> implements INodo<T> {
     public boolean isVisitado() { return visitado; }
 
     @Override
-    public List<Integer> getPesos() { return pesos; }
+    public Map<INodo<T>, Integer> getPesos() { return pesos; }
 
     @Override
     public List<INodo<T>> getVecinos() { return new ArrayList<>(vecinos); }
@@ -41,7 +43,7 @@ public class Nodo<T> implements INodo<T> {
     public void setVisitado(boolean visitado) { this.visitado = visitado; }
 
     @Override
-    public void setPesos(List<Integer> pesos) { this.pesos = pesos; }
+    public void setPesos(Map<INodo<T>, Integer> pesos) { this.pesos = pesos; }
 
     @Override
     public void setVecinos(List<INodo<T>> vecinos) { this.vecinos = vecinos; }
@@ -53,7 +55,7 @@ public class Nodo<T> implements INodo<T> {
     @Override
     public void agregarVecino(INodo<T> nodo, int peso){
         vecinos.add(nodo);
-        pesos.add(peso);
+        pesos.put(nodo, peso);
     }
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
